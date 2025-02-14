@@ -12,3 +12,8 @@ output "istio_static_ip" {
   description = "The reserved static IP for Istio Ingress"
   value       = module.istio.istio_static_ip
 }
+
+output "pubsub_topic_id" {
+  description = "The created Pub/Sub topic ID"
+  value       = module.pubsub.topic_name
+}
