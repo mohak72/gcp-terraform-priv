@@ -12,3 +12,8 @@ variable "pvc_storage_class" { type = string }
 # Istio Variables
 variable "static_ip_name" { type = string }
 variable "istio_namespace" { type = string }
+
+# Pub/Sub Variables
+variable "topic_name" { type = string }
+variable "subscription_name" { type = string }
+variable "ack_deadline_seconds" { type = number }
