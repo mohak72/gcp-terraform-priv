@@ -1,59 +1,101 @@
+######################################
+# 🔹 General GCP Project Variables
+######################################
+
 variable "project_id" {
-  description = "GCP Project ID"
+  description = "The GCP Project ID where resources will be deployed"
   type        = string
 }
 
 variable "region" {
-  description = "GCP Region"
+  description = "The GCP region where resources will be deployed"
   type        = string
+  default     = "us-central1"
 }
 
 variable "zone" {
-  description = "GCP Zone"
+  description = "The GCP zone where GKE resources will be deployed"
+  type        = string
+  default     = "us-central1-a"
+}
+
+######################################
+# 🔹 GKE Cluster Variables
+######################################
+
+variable "cluster_name" {
+  description = "The name of the existing GKE cluster"
   type        = string
 }
 
-# Istio Module Variables
-variable "static_ip_name" {
-  description = "Static IP Name for Istio"
-  default = ""
+variable "gke_service_account" {
+  description = "The GCP service account assigned to GKE nodes"
   type        = string
 }
 
-variable "istio_namespace" {
-  description = "Namespace for Istio"
-  default = ""
-  type        = string
-}
+######################################
+# 🔹 Block Storage (Persistent Disk)
+######################################
 
-# Pub/Sub Module Variables
-variable "topic_name" {
-  description = "Name of the Pub/Sub topic"
-  default = ""
-  type        = string
-}
-
-variable "subscription_name" {
-  description = "Name of the Pub/Sub subscription"
-  default = ""
-  type        = string
-}
-
-# Block Storage Module Variables
 variable "disk_name" {
-  description = "GKE Persistent Disk Name"
-  default = ""
+  description = "Name of the Persistent Disk for GKE"
   type        = string
 }
 
 variable "disk_size_gb" {
-  description = "Disk Size in GB"
-  default = ""
+  description = "Size of the Persistent Disk in GB"
   type        = number
+  default     = 100
 }
 
 variable "disk_type" {
-  description = "Type of Persistent Disk (pd-ssd, pd-standard)"
-  default = ""
+  description = "Type of Persistent Disk (pd-ssd, pd-standard, pd-balanced)"
   type        = string
+  default     = "pd-ssd"
+}
+
+variable "pvc_name" {
+  description = "The name of the Persistent Volume Claim (PVC)"
+  type        = string
+}
+
+variable "pvc_storage_class" {
+  description = "Storage class for the PVC"
+  type        = string
+  default     = "standard"
+}
+
+######################################
+# 🔹 Istio Variables
+######################################
+
+variable "static_ip_name" {
+  description = "The name of the reserved static IP for Istio Ingress"
+  type        = string
+}
+
+variable "istio_namespace" {
+  description = "The namespace where Istio will be installed"
+  type        = string
+  default     = "istio-system"
+}
+
+######################################
+# 🔹 Pub/Sub Variables
+######################################
+
+variable "topic_name" {
+  description = "The name of the Pub/Sub topic"
+  type        = string
+}
+
+variable "subscription_name" {
+  description = "The name of the Pub/Sub subscription"
+  type        = string
+}
+
+variable "ack_deadline_seconds" {
+  description = "The acknowledgment deadline in seconds for the subscription"
+  type        = number
+  default     = 10
 }
