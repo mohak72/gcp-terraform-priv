@@ -45,11 +45,12 @@ output "istio_static_ip" {
 ######################################
 
 output "pubsub_topic_id" {
-  description = "The ID of the created Pub/Sub topic"
-  value       = module.pubsub.topic_name
+  description = "The created Pub/Sub topic ID"
+  value       = module.pubsub.pubsub_topic_id  # ✅ 
 }
 
 output "pubsub_subscription_id" {
-  description = "The ID of the created Pub/Sub subscription"
-  value       = module.pubsub.subscription_name
+  description = "The created Pub/Sub subscription ID"
+  value       = module.pubsub.pubsub_subscription_id  # ✅ Corrected
 }
+

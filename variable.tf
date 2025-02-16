@@ -64,6 +64,12 @@ variable "pvc_storage_class" {
   type        = string
   default     = "standard"
 }
+variable "gke_cluster_name" {
+  description = "The name of the existing GKE cluster"
+  type        = string
+}
+
+
 
 ######################################
 # 🔹 Istio Variables
@@ -98,4 +104,21 @@ variable "ack_deadline_seconds" {
   description = "The acknowledgment deadline in seconds for the subscription"
   type        = number
   default     = 10
+}
+variable "message_retention_duration" {
+  description = "How long to retain unacknowledged messages (e.g., 7d for 7 days)"
+  type        = string
+  default     = "604800s"
+}
+
+variable "enable_message_ordering" {
+  description = "Enable message ordering in Pub/Sub"
+  type        = bool
+  default     = false
+}
+
+variable "push_endpoint" {
+  description = "Endpoint URL for push subscription (optional)"
+  type        = string
+  default     = ""
 }

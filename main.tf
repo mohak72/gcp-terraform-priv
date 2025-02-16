@@ -19,13 +19,13 @@ provider "helm" {
 }
 
 # 📌 Pre-existing GKE Cluster Module (DO NOT REMOVE)
-module "gkefit_r_central1" {
-  source         = "../../gke-cluster-module"
-  project_id     = var.project_id
-  cluster_name   = var.cluster_name
-  region         = var.region
-  service_account = var.gke_service_account
-}
+#module "gkefit_r_central1" {
+#  source         = "../../gke-cluster-module"
+#  project_id     = var.project_id
+#  cluster_name   = var.cluster_name
+#  region         = var.region
+#  service_account = var.gke_service_account
+#}
 
 # 🌍 Block Storage Module (Persistent Disk for GKE)
 module "block_storage" {
@@ -38,6 +38,8 @@ module "block_storage" {
   disk_type          = var.disk_type
   pvc_name           = var.pvc_name
   pvc_storage_class  = var.pvc_storage_class
+
+
 }
 
 # 🚀 Istio Module (Service Mesh with Static IP)
@@ -51,9 +53,14 @@ module "istio" {
 
 # 📢 Pub/Sub Module (Messaging System)
 module "pubsub" {
-  source             = "./modules/pubsub"
-  project_id         = var.project_id
-  topic_name         = var.topic_name
-  subscription_name  = var.subscription_name
-  ack_deadline_seconds = var.ack_deadline_seconds
+  source                     = "./modules/pubsub"
+  project_id                 = var.project_id
+  topic_name                 = var.topic_name
+  subscription_name          = var.subscription_name
+  ack_deadline_seconds       = var.ack_deadline_seconds
+  message_retention_duration = var.message_retention_duration
+  enable_message_ordering    = var.enable_message_ordering
+  push_endpoint              = var.push_endpoint
+  region                     = var.region
 }
+
