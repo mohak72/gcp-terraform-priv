@@ -23,3 +23,5 @@ enable_message_ordering    = false
 push_endpoint              = ""
 #region                     = "us-central1"
 
+cluster_name       = "my-gke-cluster"
+gke_service_account = "my-gke-service-account@my-gcp-project.iam.gserviceaccount.com"
